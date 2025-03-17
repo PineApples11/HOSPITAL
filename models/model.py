@@ -1,3 +1,6 @@
+import os
+import sys
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import Column,String,Integer,create_engine,ForeignKey,Table
 from sqlalchemy.orm import sessionmaker
@@ -24,6 +27,8 @@ class Patient(Base):
   __tablename__ = "patients"
 
   id = Column(Integer(), primary_key=True)
+  name = Column(String())
+  phone = Column(Integer()) 
   date_birth = Column(String())
   gender = Column(String())
   address = Column(String())
@@ -33,6 +38,7 @@ class Doctor(Base):
    __tablename__ = "doctors"
 
    id = Column(Integer(), primary_key = True)
+   name = Column(String())
    specialization = Column(String())
    department_id = Column(Integer(), ForeignKey('departments.id'))
    license_number = Column(String())
